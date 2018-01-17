@@ -24,8 +24,9 @@
     
     if (paramString != nil) {
         
-        NSString* encodedUrl = [paramString stringByAddingPercentEscapesUsingEncoding:
-                                NSUTF8StringEncoding];
+        NSCharacterSet *set = [NSCharacterSet URLFragmentAllowedCharacterSet];
+        NSString* encodedUrl = [paramString stringByAddingPercentEncodingWithAllowedCharacters:
+                                set];
         theUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@?%@",urlString,encodedUrl]];
     }
     else
